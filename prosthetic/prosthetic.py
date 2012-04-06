@@ -17,7 +17,7 @@ class TeslaKlang(Prosthetic):
     def act(self, force=False):
         '''
         A simple prosthetic method which appends a new location (street_address) for any
-        prosthetic which has moved since the last scan. We keep the last known location
+        Weavr which has moved since the last scan. We keep the last known location
         in the token state.
         '''
         weavrConfig = self.get("/1/weavr/configuration")
