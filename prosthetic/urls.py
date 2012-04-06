@@ -4,5 +4,6 @@ import views
 
 urlpatterns = patterns(
     '',
-    (r"^list-weavrs/$", views.list_weavrs)
+    (r"^list-weavrs/$", views.list_weavrs),
+    (r"^get-location/(\d+)/$", views.get_location)
 )

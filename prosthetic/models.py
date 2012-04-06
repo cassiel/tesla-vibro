@@ -23,3 +23,14 @@ class Location(models.Model):
 # Calls from view:
 def listWeavrs():
     return Weavr.objects.all()
+
+def getWeavr(id):
+    return Weavr.objects.get(id=id)
+
+def getLastLocation(weavrID):
+    w = getWeavr(weavrID)
+    locs = Location.objects.filter(weavr=weavrID)
+    if len(locs) >= 1:
+        return locs[0]
+    else:
+        return None
