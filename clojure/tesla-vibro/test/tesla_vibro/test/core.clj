@@ -1,6 +1,5 @@
 (ns tesla-vibro.test.core
-  (:use [tesla-vibro.core])
-  (:use [clojure.test]))
+  (:use [tesla-vibro.core :as core])
+  (:use [expectations]))
 
-(deftest replace-me ;; FIXME: write
-  (is false "No tests have been written."))
+(expect nil? nil)
