@@ -1,11 +1,16 @@
 (ns user
   (:require (tesla-vibro [prosthetic :as p]
-                         [audio :as a])))
+                         [audio :as a]
+                         [morse :as m])))
 
 (use 'overtone.live)
 
 (p/doit "list-weavrs/")
-(p/doit "get-location/10/")
+
+(map #(p/doit (str "get-location/" % "/"))
+     [14 18])
+
+(p/doit "get-location/14/")
 
 (odoc demo)
 (odoc after-delay)
@@ -158,15 +163,77 @@ b
 (syn)
 (buffer-save b "~/Desktop/garble.wav")
 
-
+;; OK:
 (def s (synth (out 0 (saw 220))))
 (s)
 (stop)
 
+;; Not:
 
 (def o (out 0 (saw 220)))
 (def s (synth o))
 (s)
 
+;; OK?
 
-(out 0 (saw 220))
+(defn o [] (out 0 (saw 220)))
+(def s (synth (o)))
+(s)
+
+(linen 1.0 :releaseTime 0)
+
+;; Synth which self-destructs.
+
+(def sss (synth (out 0 (* (line 1.0 1.0 1.0 :action FREE)
+                          (saw 220)))))
+(sss)
+
+
+
+
+(demo 5 (* (line 1.0 1.0 1.0 :action FREE)
+           (out 0 (saw 220))))
+
+(node-tree)
+(kill 28)
+
+
+(a/beep 1.5)
+
+(:params  a/blotty)
+
+(empty? (rest [1]))
+
+(volume 1)
+
+(a/do-beeps (now) [0 1 0 0 1 1])
+
+(a/do-beeps [0 0 1 0])
+
+(now)
+
+(get m/CODE \A)
+
+([55 66] 0)
+
+(map {"." 0 "-" 1}
+     (clojure.string/split (m/CODE \9) #"\s"))
+
+(clojure.string/split ". .  -" #"\s+")
+
+(m/CODE \+)
+
+(m/beep-char (now) \O)
+
+(m/beep-char (now) \a)
+
+(clojure.string/blank? (str \A))
+
+
+(reduce (fn [t ch] (+ m/CHAR-GAP-MS (m/beep-char t ch))) (now) [\A \B \C])
+
+(nth " " 0)
+
+\space
+
+(m/beep-chars (now) [\S \O \S \space \C])
