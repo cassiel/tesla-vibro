@@ -1,7 +1,7 @@
 (ns user
   (:require (tesla-vibro [prosthetic :as p]
-                         [audio :as a]
-                         [morse :as m])))
+                         [audio :as a])
+            (overtone-morse [morse :as m])))
 
 (use 'overtone.live)
 
@@ -10,7 +10,7 @@
 (map #(p/doit (str "get-location/" % "/"))
      [14 18])
 
-(p/doit "get-location/14/")
+(p/doit "get-location/11/")
 
 (odoc demo)
 (odoc after-delay)
@@ -198,42 +198,4 @@ b
 (kill 28)
 
 
-(a/beep 1.5)
-
-(:params  a/blotty)
-
-(empty? (rest [1]))
-
-(volume 1)
-
-(a/do-beeps (now) [0 1 0 0 1 1])
-
-(a/do-beeps [0 0 1 0])
-
-(now)
-
-(get m/CODE \A)
-
-([55 66] 0)
-
-(map {"." 0 "-" 1}
-     (clojure.string/split (m/CODE \9) #"\s"))
-
-(clojure.string/split ". .  -" #"\s+")
-
-(m/CODE \+)
-
-(m/beep-char (now) \O)
-
-(m/beep-char (now) \a)
-
-(clojure.string/blank? (str \A))
-
-
-(reduce (fn [t ch] (+ m/CHAR-GAP-MS (m/beep-char t ch))) (now) [\A \B \C])
-
-(nth " " 0)
-
-\space
-
-(m/beep-chars (now) [\S \O \S \space \C])
+(m/morse (:location (p/doit "get-location/11/")))

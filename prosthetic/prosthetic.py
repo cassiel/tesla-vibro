@@ -51,7 +51,8 @@ class TeslaKlang(Prosthetic):
             currLocation = None
 
         # Moved?
-        if currLocation not in [None, lastLocation]:
+        #if currLocation not in [None, lastLocation, '']:
+        if currLocation not in [None, '']: # FIXME: force move
             l = Location(weavr=w, location=currLocation)
             l.save()
 
