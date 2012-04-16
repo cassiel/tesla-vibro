@@ -23,6 +23,15 @@ we can fetch its last known location. Both calls return a JSON
 structure. The Clojure code uses an asynchronous HTTP client and a
 JSON parser to unpack the result.
 
+## 2012-04-16
+
+We're currently playing with feeding Weavr location strings into a
+Morse code generator in Overtone (see `scratch.clj`), as a dry run for
+synthesising real control signals for the prosthetic hardware. The
+Morse generator is a separate [GitHub project][morse] and isn't in any
+public repositories at the moment, so check out that project and do a
+Leiningen install to get a local repository version to link against.
+
 [weavrs]: http://www.weavrs.com
 [clojure]: http://clojure.org
 [max]: http://cycling74.com/products/max/
@@ -31,3 +40,4 @@ JSON parser to unpack the result.
 [runner]: https://github.com/philterphactory/prosthetic-runner
 [djnr]: http://www.allbuttonspressed.com/projects/django-nonrel
 [gae]: https://developers.google.com/appengine/
+[morse]: https://github.com/cassiel/overtone-morse
