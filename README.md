@@ -30,7 +30,10 @@ Morse code generator in Overtone (see `scratch.clj`), as a dry run for
 synthesising real control signals for the prosthetic hardware. The
 Morse generator is a separate [GitHub project][morse] and isn't in any
 public repositories at the moment, so check out that project and do a
-Leiningen install to get a local repository version to link against.
+Leiningen install to get a local repository version to link
+against. (The Morse isn't recorded to disk; we do have some
+disk-recording code but need to hack the Morse generator's ugens a
+little to make buffer capture work.)
 
 [weavrs]: http://www.weavrs.com
 [clojure]: http://clojure.org
