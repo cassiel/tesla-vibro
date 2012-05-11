@@ -31,8 +31,8 @@ This package loads most of what it needs from Maven repositories via
 Leiningen, but there are one or two packages not in global repos, so
 they need to be checked out of GitHub and built locally:
 
-- [SoundCloud for Clojure][clojure-soundcloud]: build and install this
-  into the local repository via `lein install`
+- Our [SoundCloud for Clojure][clojure-soundcloud] package: build and
+  install this into the local repository via `lein install`
 
 - [net.loadbang OSC library][net.loadbang.osc]: our Java OSC
   library. This needs to be built and (locally) installed via
