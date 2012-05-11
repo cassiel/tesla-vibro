@@ -67,7 +67,7 @@ little to make buffer capture work.)
 [weavrs]: http://www.weavrs.com
 [clojure]: http://clojure.org
 [clojure-soundcloud]: https://github.com/cassiel/clojure-soundcloud
-[net.loadbang.sc]: https://github.com/cassiel/net.loadbang.osc
+[net.loadbang.osc]: https://github.com/cassiel/net.loadbang.osc
 [max]: http://cycling74.com/products/max/
 [overtone]: http://overtone.github.com/
 [nlclojure]: https://github.com/cassiel/net.loadbang.clojure
