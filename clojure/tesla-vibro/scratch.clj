@@ -1,7 +1,10 @@
 (ns user
   (:require (tesla-vibro [prosthetic :as p]
-                         [audio :as a])
-            (overtone-morse [morse :as m])))
+                         [osc :as osc])
+            (overtone [osc :as oscxxx]))
+  (:import (net.loadbang.osc.comms UDPTransmitter UDPReceiver)
+           (net.loadbang.osc.data Message)
+           (java.net InetAddress)))
 
 (use 'overtone.live)
 
@@ -199,3 +202,81 @@ b
 
 
 (m/morse (:location (p/doit "get-location/11/")))
+
+;; Testing Overtone's OSC comms to SC.
+
+(def server (osc/osc-server 57000))
+
+(osc/osc-handle server "/rendered"
+                (fn [msg] (println "MSG: " msg)))
+
+(def client (osc/osc-client "localhost" 57120))
+
+(osc/osc-send client "/start")
+(osc/osc-send client "/add-dtmf" 3 4 5)
+(osc/osc-send server "/render", "s", "/Users/nick/Desktop/bangbang.aiff")
+
+(osc/osc-close server)
+(osc/osc-close client)
+
+;; Testing with our own OSC code:
+
+(def server (UDPTransmitter. (InetAddress/getByName "localhost") 57120))
+
+(def m (-> (Message. "/hello")
+           (.addInteger 1)
+           (.addInteger 2)
+           (.addInteger 3)))
+
+(def m (Message. "/start"))
+
+(def m (-> (Message. "/add-dtmf")
+           (.addInteger 3)))
+
+;;(def m (-> (Message. "/render")
+;;         (.addString "/Users/nick/Desktop/bangbangbang.aiff")))
+
+(def m (-> (Message. "/render")
+           (.addInteger 98765)))
+
+(.transmit server m)
+
+(.close server)
+
+;; Rather clumsy manual efforts:
+
+(def a (atom nil))
+(deref a)
+
+(defn callback
+  [a]
+  (proxy
+      [UDPReceiver]
+      [57000]
+    (consumeMessage [ts msg]
+      (reset! a msg))))
+
+(def c (callback a))
+
+(.open c)
+
+(.take c)
+
+(.close c)
+
+;; Our nice wrappers:
+
+(def a (atom nil))
+
+(def cl (osc/start-service 57000
+                            (fn [msg] (reset! a msg))))
+
+cl
+
+(deref a)
+
+(-> (deref a) (.getArgument 0) (.getValue))
+
+(-> (deref a) (.getAddress))
+
+(osc/close cl)

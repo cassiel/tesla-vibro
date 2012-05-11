@@ -7,7 +7,7 @@
 			"revision" : 5
 		}
 ,
-		"rect" : [ 38.0, 66.0, 473.0, 358.0 ],
+		"rect" : [ 631.0, 281.0, 473.0, 358.0 ],
 		"bglocked" : 0,
 		"openinpresentation" : 0,
 		"default_fontsize" : 12.0,
@@ -35,7 +35,7 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 330.0, 135.0, 96.0, 16.0 ],
+					"patching_rect" : [ 150.0, 245.0, 96.0, 16.0 ],
 					"text" : "/render 12345"
 				}
 
@@ -49,8 +49,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 210.0, 135.0, 50.0, 16.0 ],
-					"text" : "/add 7"
+					"patching_rect" : [ 210.0, 135.0, 83.0, 16.0 ],
+					"text" : "/add-dtmf 7"
 				}
 
 			}
@@ -63,8 +63,8 @@
 					"numinlets" : 2,
 					"numoutlets" : 1,
 					"outlettype" : [ "" ],
-					"patching_rect" : [ 105.0, 135.0, 50.0, 16.0 ],
-					"text" : "/add 4"
+					"patching_rect" : [ 105.0, 135.0, 83.0, 16.0 ],
+					"text" : "/add-dtmf 4"
 				}
 
 			}
@@ -77,7 +77,7 @@
 					"maxclass" : "comment",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 210.0, 213.0, 150.0, 30.0 ],
+					"patching_rect" : [ 210.0, 313.0, 150.0, 30.0 ],
 					"text" : "To SuperCollider *language* listener"
 				}
 
@@ -117,7 +117,7 @@
 					"maxclass" : "newobj",
 					"numinlets" : 1,
 					"numoutlets" : 0,
-					"patching_rect" : [ 30.0, 225.0, 161.0, 18.0 ],
+					"patching_rect" : [ 30.0, 325.0, 161.0, 18.0 ],
 					"text" : "udpsend localhost 57120"
 				}
 

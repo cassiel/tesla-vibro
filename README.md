@@ -23,7 +23,36 @@ we can fetch its last known location. Both calls return a JSON
 structure. The Clojure code uses an asynchronous HTTP client and a
 JSON parser to unpack the result.
 
-## 2012-04-16
+## Usage
+
+### Clojure
+
+This package loads most of what it needs from Maven repositories via
+Leiningen, but there are one or two packages not in global repos, so
+they need to be checked out of GitHub and built locally:
+
+- [SoundCloud for Clojure][clojure-soundcloud]: build and install this
+  into the local repository via `lein install`
+
+- [net.loadbang OSC library][net.loadbang.osc]: our Java OSC
+  library. This needs to be built and (locally) installed via
+  Maven. This library in turn has a dependency on `net.loadbang.lib`
+  (see its `README` file).
+
+There is one configuration file for the SoundCloud authentication: see
+the `README.md` for that project for details.
+
+## Notes
+
+### 2012-05-11
+
+We're no longer using Overtone, since it can't render non-realtime or
+without a sound card. Accordingly, we've built a "pure" SuperCollider
+program that runs as an OSC server, and send it high-level OSC
+commands to sequence DTMF tones and control signals, and to render out
+audio files (see directory `/sc/`).
+
+### 2012-04-16
 
 We're currently playing with feeding Weavr location strings into a
 Morse code generator in Overtone (see `scratch.clj`), as a dry run for
@@ -37,6 +66,8 @@ little to make buffer capture work.)
 
 [weavrs]: http://www.weavrs.com
 [clojure]: http://clojure.org
+[clojure-soundcloud]: https://github.com/cassiel/clojure-soundcloud
+[net.loadbang.sc]: https://github.com/cassiel/net.loadbang.osc
 [max]: http://cycling74.com/products/max/
 [overtone]: http://overtone.github.com/
 [nlclojure]: https://github.com/cassiel/net.loadbang.clojure
